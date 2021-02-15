@@ -1,0 +1,82 @@
+---
+title: "Tugas Pertemuan 1 Praktikum ADW"
+author: "Elda Manurita-G14170079"
+date: "8/2/2021"
+output: html_document
+---
+---
+
+<div style="text-align: center">
+# POLA DATA DERET WAKTU
+</div>
+&nbsp;
+<div style="text-align: justify">
+### DATA
+
+Data yang digunakan merupakan data time series yang didapatkan dari Kaggle mengenai produksi listrik dari tahun 1985 sampai Januari 2018. Data dapat diakses melalui Github dengan link sebagai berikut:
+
+
+```{r} 
+data<-read.csv("https://raw.githubusercontent.com/eldamanurita/STA542-ADW/main/Praktikum1_Electric_Production.csv", sep = ",", header = TRUE)
+knitr::kable(data)
+```
+
+### EKSPLORASI DATA
+```{r}
+head(data)
+```
+```{r}
+str(data)
+summary(data)
+```
+
+Terdapat dua peubah yaitu tanggal dan jumlah produksi listrik yang dicatat setiap bulan. Tipe peubah tanggal berupa karakter dan peubah jumlah produksi listrik adalah numerik. Jumlah baris pada data yaitu 397 dan tidak ada NA atau missing value pada data. 
+
+### MEMBENTUK DATA TIME SERIES
+```{r}
+datats<-ts(data$IPG2211A2N)
+
+```
+### PLOT DATA
+```{r}
+ts.plot(datats, xlab="periode waktu", ylab="data", col="blue", main="Plot time series data produksi listrik")
+points(datats)
+```
+
+&nbsp;
+
+Data memiliki pola tren dan kemungkinan juga musiman. Oleh karena itu akan dilihat plot data dalam jumlah periode yang lebih sedikit.
+
+```{r}
+date.ts<-
+ts.plot(datats[1:50],col = "blue", xlab="periode waktu", ylab="data", main="Plot time series data produksi listrik", lwd=3)
+```
+
+&nbsp;
+
+Setelah dilihat dalam jumlah periode waktu yang lebih sedikit, data menjadi lebih jelas terlihat membentuk pola trend musiman dengan satu musim memiliki panjang 12 periode.
+
+
+<div style="text-align: center">
+## Terima Kasih
+</div>
+
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
